@@ -1,0 +1,515 @@
+.edit-control-heading{
+	background: #9F1106;
+	padding: 0px 0px !important;
+	color: #FFF;
+}
+
+.btn-gray{
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+
+.bg-white {
+    background-color: #9F1106 !important;
+    border-bottom-color: #480904;
+}
+
+.header-navigation {
+    background-color: #eee !important;
+    border-bottom-color: #480904;
+    padding: 6px 0px;
+}
+
+.text-danger {
+    color: #FFF;
+}
+
+a.navbar-brand {
+    color: #FFF;
+}
+
+a.top-link{
+    color: #FFF;
+}
+
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 20px 15px;
+    font-size: 24px;
+    line-height: 20px;
+}
+
+.maincontent{
+    text-align: center;
+    margin-top: 80px;
+}
+
+.payment-links{
+    margin: 0 20px;
+}
+
+
+.grey-container {
+    background: #FFF;
+    padding: 5px;
+    border: 1px solid #dfdfdf;
+    border-width: 1px 0;
+}
+
+.shortcut-link .text {
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: -5px;
+    color: #B93E3E;
+    font-weight: 600;
+}
+
+.payinfo{
+    font-size:16px;
+}
+
+.payinfo-link{
+    color: #B93E3E;
+}
+
+.edit-reg-form{
+    padding: 0 150px !important;
+}
+
+.logout-right{
+    float: right !important;
+}
+
+.not-active {
+    pointer-events: none;
+    cursor: default;
+}
+
+@media only screen and (max-width: 400px) and (min-width:250px) {
+
+    .btn-primary3 {
+        background: rgb(159, 17, 6);
+        border: 1px solid #7D1B13;
+        padding: 90px 12px;
+        border-radius: 30px;
+        color: white;
+        font-size: 18px;
+        margin-top: 5px;
+    }
+
+    .maincontent {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .navbar-toggle .icon-bar {
+        background: black;
+    }
+
+    .occ-filter {
+        float: right;
+
+    }
+
+    .dataTables_length {
+        margin: 5% 0px !important;
+        float: right;
+    }
+
+    .payment-links{
+        margin: 0px 0!important;
+        float: left;
+    }
+
+    .shortlink{
+        float:right;
+    }
+
+    .mobilesize{
+
+        float: right;
+        margin-top: -20px;
+
+    }
+
+    .edit-reg-form{
+        padding: 0 10% !important;
+    }
+
+    .logout-right{
+        float: right;
+    }
+
+    .input-group {
+        position: relative;
+        display: table;
+        border-collapse: separate;
+        width: 50% !important;
+    }
+
+    div.edit-control-heading{
+        display: none;
+    }
+
+    div#histHolder{
+        display: none;
+    }
+
+    .navbar-brands{
+        padding: 0px 15px;
+    }
+
+
+}
+
+@media only screen and (max-width: 600px) and (min-width:400px) {
+
+
+
+    .row {
+        text-align: center;
+    }
+
+    .content-padding {
+        padding: 0px !important;
+    }
+
+
+    .btn-primary3 {
+        background: rgb(159, 17, 6);
+        border: 1px solid #7D1B13;
+        padding: 90px 12px;
+        border-radius: 30px;
+        color: white;
+        font-size: 18px;
+        margin-top: 5px;
+    }
+
+    .maincontent {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .navbar-toggle .icon-bar {
+        background: black;
+    }
+
+    .occ-filter {
+        float: right;
+
+    }
+
+    .dataTables_length {
+        margin: 5% 0px !important;
+        float: right;
+    }
+
+    .payment-links{
+        margin: 0px 0!important;
+        float: left;
+    }
+
+    .shortlink{
+        float:right;
+    }
+
+    .mobilesize{
+
+        float: right;
+        margin-top: -20px;
+
+    }
+
+    .edit-reg-form{
+        padding: 0 10% !important;
+    }
+
+    .navbar-right {
+        float: left!important;
+    }
+
+    .shortcut-link .shortcut-icon {
+        position: relative;
+        font-size: 24px;
+    }
+
+    .nav>li>a {
+        position: relative;
+        display: block;
+        padding: 20px 30px;
+    }
+
+    .shortcut-link {
+        margin-right: 10px;
+    }
+
+    .logout-right{
+        float: right;
+    }
+
+    .dataTables_length {
+        margin: 1% 0px !important;
+        float: right;
+    }
+
+    .input-group {
+        position: relative;
+        display: table;
+        border-collapse: separate;
+        width: 30% !important;
+    }
+
+    div.edit-control-heading{
+        display: none;
+    }
+
+    div#histHolder{
+        display: none;
+    }
+
+    .payinfo-record{
+
+        margin-top:5px !important;
+    }
+
+    .navbar-brands{
+        padding: 0px 15px;
+    }
+
+
+
+}
+
+@media only screen and (max-width: 800px) and (min-width:600px) {
+
+
+    .row {
+        text-align: center;
+    }
+
+    .content-padding {
+        padding: 0px !important;
+    }
+
+    .btn-primary3 {
+        background: rgb(159, 17, 6);
+        border: 1px solid #7D1B13;
+        padding: 90px 12px;
+        border-radius: 30px;
+        color: white;
+        font-size: 18px;
+        margin-top: 5px;
+    }
+
+    .maincontent {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .navbar-toggle .icon-bar {
+        background: black;
+    }
+
+    .occ-filter {
+        float: right;
+
+    }
+
+    .dataTables_length {
+        margin: 5% 0px !important;
+        float: right;
+    }
+
+    .payment-links{
+        margin: 0px 0!important;
+        float: left;
+    }
+
+    .shortlink{
+        float:right;
+    }
+
+    .mobilesize{
+
+        float: right;
+        margin-top: -20px;
+
+    }
+
+    .edit-reg-form{
+        padding: 0 10% !important;
+    }
+
+    .navbar-right {
+        float: left!important;
+    }
+
+    .shortcut-link .shortcut-icon {
+        position: relative;
+        font-size: 24px;
+    }
+
+    .nav>li>a {
+        position: relative;
+        display: block;
+        padding: 15px 30px;
+    }
+
+    .shortcut-link {
+        margin-right: 10px;
+    }
+
+    .logout-right{
+        float: right;
+    }
+
+    .dataTables_length {
+        margin: 1% 0px !important;
+        float: right;
+    }
+
+    .input-group {
+        position: relative;
+        display: table;
+        border-collapse: separate;
+        width: 30% !important;
+    }
+
+    div.edit-control-heading{
+        display: none;
+    }
+
+    div#histHolder{
+        display: none;
+    }
+
+    .payinfo-record{
+
+        margin-top:5px !important;
+    }
+
+    .navbar-brands{
+        padding: 0px 15px;
+    }
+
+
+
+}
+
+@media only screen and (max-width: 1192px) and (min-width:800px) {
+
+    .row {
+        text-align: center;
+
+    }
+    .col-sm-4 {
+          width: 100%;
+    }
+    .content-padding {
+        padding: 0px !important;
+    }
+
+
+    footer {
+         margin-left: 0px !important;
+    }
+
+    .btn-primary3 {
+        background: rgb(159, 17, 6);
+        border: 1px solid #7D1B13;
+        padding: 90px 12px;
+        border-radius: 30px;
+        color: white;
+        font-size: 18px;
+        margin-top: 5px;
+    }
+
+    .maincontent {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .navbar-toggle .icon-bar {
+        background: black;
+    }
+
+    .occ-filter {
+        float: right;
+
+    }
+
+    .dataTables_length {
+        margin: 5% 0px !important;
+        float: right;
+    }
+
+    .payment-links{
+        margin: 0px 0!important;
+        float: left;
+    }
+
+    .shortlink{
+        float:right;
+    }
+
+    .mobilesize{
+
+        float: right;
+        margin-top: -20px;
+
+    }
+
+    .edit-reg-form{
+        padding: 0 10% !important;
+    }
+
+
+    .navbar-right {
+        float: left!important;
+    }
+
+    .shortcut-link .shortcut-icon {
+        position: relative;
+        font-size: 14px;
+    }
+
+    .nav>li>a {
+        position: relative;
+        display: block;
+        padding: 20px 1px;
+    }
+
+    .shortcut-link {
+         margin-right: 5px;
+    }
+
+    .logout-right{
+        float: right;
+    }
+
+    .dataTables_length {
+        margin: 1% 0px !important;
+        float: right;
+    }
+
+    .input-group {
+        position: relative;
+        display: table;
+        border-collapse: separate;
+        width: 30% !important;
+    }
+
+    .payinfo-record{
+
+        margin-top:5px !important;
+    }
+
+
+    .navbar-brands{
+        padding: 0px 15px;
+    }
+
+}

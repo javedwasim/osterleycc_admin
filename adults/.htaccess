@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^adults\.osterleycc\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.adults\.osterleycc\.com$
+RewriteRule ^/?$ "http\:\/\/www\.osterleycc\.com\/apply2\/admin" [R=301,L]
+

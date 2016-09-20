@@ -1,0 +1,72 @@
+html, body, div, span, small, big, object, iframe, h1, h2, h3, h4, h5, h6, pre, a, abbr, blockquote, acronym, address, code, del, dfn, dl, dt, dd, em, img, q, ol, ul, li, fieldset, form, label, input, textarea, select, legend, caption, tbody, tfoot, thead, b, p 
+	{
+	margin:0;
+	padding:0;
+	border:0;
+	outline:none;
+	list-style:none;
+	}
+
+body 
+	{
+	margin:0;
+	padding:0;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#333;
+	}
+	
+img {
+	border:0;
+	}
+	
+a, a:hover 
+	{
+	text-decoration:none;
+	outline:none;
+	}
+
+/* headings stylization */
+h1, h2, h3, h4, h5, h6 
+	{
+	padding:0;
+	margin:0;
+	font-weight:normal;
+    font-size:0;
+	font-family:Verdana, Geneva, sans-serif;
+	color:#333;
+	}
+
+/* headings stylization */
+/* setting */
+.floatLeft
+	{
+	float:left;
+	}
+
+.floatRight
+	{
+	float:right;
+	}
+
+.align-top
+	{
+	vertical-align:top;
+	}
+	
+.align-bottom
+	{
+	vertical-align:bottom;
+	}
+/* setting */
+/* clear class for div */
+.clear
+	{
+		clear:both;
+	}
+
+/* clear class for div */
+#histHolder {
+	font-size: 10px;
+	width: 100%;
+}

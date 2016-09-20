@@ -1,0 +1,329 @@
+<?php include("class/db_config.php");
+
+//mail function
+
+function readTemplateFile($FileName)
+ {
+  $fp = fopen($FileName,"r") or exit("Unable to open File ".$FileName);
+  $str = "";
+  while(!feof($fp)) {
+   $str .= fread($fp,1024);
+  } 
+  return $str;
+}
+
+if($_SESSION['sid'])
+{
+	$_SESSION['appropriate_ans1']    = $_POST['circling_ans1'];
+	$_SESSION['appropriate_ans2']    = $_POST['circling_ans2'];
+	$_SESSION['appropriate_ans3']    = $_POST['circling_ans3'];
+	$_SESSION['appropriate_ans4'] 	 = $_POST['circling_ans4'];
+	$_SESSION['appropriate_ans5']    = $_POST['circling_ans5'];
+	$_SESSION['club_constitution']   = $_POST['club_constitution'];
+	$_SESSION['code_of_conduct'] 	 = $_POST['code_of_conduct'];
+	$_SESSION['cck_bx']				 = $_POST['cck_bx'];
+	$firstname				 = 	$_SESSION['fname'];
+	$lastname				 = 	$_SESSION['lname'];
+	$birthday				 = 	$_SESSION['dday'].'/'.$_SESSION['dmonth'].'/'.$_SESSION['dyear'] ;
+	$currentAge				 = 	$_SESSION['cur_age'];
+	$schoolClass			 = 	str_replace("'", " ",$_SESSION['sc_cl']);
+	$gender					 = 	$_SESSION['gender'];
+	$mobTel					 = 	$_SESSION['mtel'];
+	$guardianName			 = 	$_SESSION['guardian_name'];
+	$relationChild			 = 	$_SESSION['rel_child'];
+	$address				 = 	$_SESSION['addr'];
+	$address2				 = 	$_SESSION['addr2'];
+	$cityofuk				 = 	$_SESSION['cityofuk'];
+	$counties				 = 	$_SESSION['counties'];
+	$postcode				 = 	$_SESSION['postcode'];
+	$dayTimeTel				 = 	$_SESSION['dtimetel'];
+	$evenTimeTel			 = 	$_SESSION['etimetel'];
+	$emailAddress			 =  $_SESSION['email'];
+	$emergencyContactName	 = 	$_SESSION['emerg_name'];
+	$emergencyContactChild	 = 	$_SESSION['rel_child_emg'];
+	$emergencyContactAddr 	 = 	$_SESSION['addr_emg'];
+	$emergencyContactDayTel  = 	$_SESSION['dtimetel_emg'];
+	$emergencyContactEvenTel = 	$_SESSION['etimetel_emg'];
+	$emergencyemail          =  $_SESSION['email_emg'];
+	$sid					 = 	$_SESSION['sid'];
+	$childPlay				 = 	$_SESSION['chld_ply'];
+	$played		 			 = 	$_SESSION['played_cricket1'].'|'.$_SESSION['played_cricket2'].'|'.$_SESSION['played_cricket3'].'|'.$_SESSION['played_cricket4'].'|'.$_SESSION['played_cricket5'].'|'.$_SESSION['played_cricket6'];
+	$careImpairment			 = 	$_SESSION['care_impairment'];
+	$impairments			 = 	$_SESSION['impairment1'].'|'.$_SESSION['impairment2'].'|'.$_SESSION['impairment3'].'|'.$_SESSION['impairment4'].'|'.$_SESSION['impairment5'];
+	$otherSpcf				 =  $_SESSION['other_spcf'];
+	$otherSpc				 =  $_SESSION['other_spc'];
+	$additional              =  $_SESSION['additional_info'];
+	$doctorName				 =  $_SESSION['name_dr'];
+	$doctorTel				 =  $_SESSION['tel_dr'];
+	$consent				 =  $_SESSION['medic_consent'].'|'.$_SESSION['medic_consent_child'];
+	$sid					 =  $_SESSION['sid'];
+	
+	$cirlce 				 =  $_SESSION['appropriate_ans1'].'|'.$_SESSION['appropriate_ans2'].'|'.$_SESSION['appropriate_ans3'].'|'.$_SESSION['appropriate_ans4'].'|'.$_SESSION['appropriate_ans5'];
+	$club 					 = $_SESSION['club_constitution'];
+	$code					 = $_SESSION['code_of_conduct'];
+	$terms					 = $_SESSION['cck_bx'];	
+
+
+	$emgcity 					 = $_SESSION['cityofuk_emg'];
+	$emgcounty                   = $_SESSION['counties_emg'];
+	$emgpost			         = $_SESSION['postcode_emg'];
+
+
+	$cricket_played = str_replace(" ", "_", $played);
+	$impairment = str_replace(" ", "_", $impairments);
+	$codesofconduct = $club.'|'.$code;
+	$date = date("Y-m-d");
+	
+	$fulladdress = $address.'|'.$address2;
+	$status = '1';
+	
+
+ 	//Discounted amount starts here
+
+	$discountAmount = mysql_query("select discounted_amount from `discounted_amount` where `fname` = '$firstname' and `lname` = '$lastname' and `date_birth` = '$birthday' and `status` = 1");
+	$discamount = mysql_fetch_array($discountAmount);
+	$discamount['discounted_amount'];
+	if($discamount['discounted_amount'])
+	{
+		$totalprice				 =  $discamount['discounted_amount'];
+	}
+	else
+	{
+		$totalprice				 =  $_SESSION['total_price'];
+	}
+	
+	
+	//Discounted amount ends here
+
+
+//Colts information inserts
+
+ $query = "call occ_registrant('NULL','".$firstname."','".$lastname."','".$birthday."','".$currentAge."','".$gender."','".$mobTel."','".$schoolClass."','".$guardianName."','".$relationChild."','".$fulladdress."','".$cityofuk."','".$counties."','".$postcode."','".$dayTimeTel."','".$evenTimeTel."','".$emailAddress."','".$emergencyContactName."','".$emergencyContactChild."','".$emergencyContactAddr."','".$emgcity."','".$emgcounty."','".$emgpost."','".$emergencyContactDayTel."','".$emergencyContactEvenTel."','".$emergencyemail."','".$childPlay."','".$cricket_played."','".$otherSpc."','".$careImpairment."','".$impairment."','".$otherSpcf."','".$additional."','".$doctorName."','".$doctorTel."','".$consent."','".$cirlce."','".$date."','".$codesofconduct."','".$terms."','".$totalprice."','".$sid."','".$status."')";
+ 
+if(mysql_query($query))
+{
+
+	//colts payment records inserting
+	
+	
+	//Mail procedure of colts registration starts here
+	
+	$NameofPerson = $firstname.'&nbsp;'.$lastname;
+	$body = readTemplateFile("reg_colt.html");
+	$headers = "From: omer@osterleycc.com";
+	$headers .= "\r\nContent-Type: text/html; charset=iso-8859-1";
+    $body = str_replace("#fullname#",$NameofPerson,$body); 
+//		$estatus = mail($emailAddress, " Registration Successful ", $body, $headers);
+	
+	
+	//Mail procedure of colts registration ends here
+	
+
+	
+}
+else
+{
+	mysql_error().'<hr>';
+}
+}
+else
+{
+	header("Location:index.php");
+}
+?>
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<script type='text/javascript'>
+(function (d, t) {
+  var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+  bh.type = 'text/javascript';
+  bh.src = '//www.bugherd.com/sidebarv2.js?apikey=bshfgpegfciiwavc7a2xgg';
+  s.parentNode.insertBefore(bh, s);
+  })(document, 'script');
+  
+
+</script>
+
+<meta charset="utf-8">
+	<title>Osterley Cricket Club | Colt Registration Form</title>
+    <link rel="stylesheet" media="screen" href="css/reset.css" >
+	<link rel="stylesheet" media="screen" href="css/styles.css" >
+    <script type="text/javascript" src="js/jquery-latest.js"></script>
+    <script type="text/javascript" src="js/gen_validatorv4.js"></script>
+    <script type="text/javascript">
+	$(document).ready(function(e) {
+		
+    		$("#submit").click(function(e) {
+			if($('input').is(":checked") == false)
+			{
+				alert("Please select payment method");
+				return false;
+				
+			}
+       		if($("#pay1").attr('checked'))
+			{
+				window.location.assign("http://www.osterleycc.com/apply/payinperson.php");
+				//window.location.assign("http://localhost/osterleycc/payinperson.php");
+				
+			}
+				if($("#pay2").attr('checked'))
+			{
+				
+				$("#bac").trigger('click');
+			}
+			});
+});
+</script>
+</head>
+
+<body>
+<div id="container">
+<div id="wrapper">
+<?php include("header.php"); ?>
+</header>
+<div id="tabs-container">
+<div class="top-menus">
+<div class="floatLeft tab">Colts Information</div>
+<div class="floatLeft tab spacing-tab">Sporting Information</div>
+<div class="floatLeft tab spacing-tab">Information</div>
+<div class="floatLeft tab spacing-tab">Submission &amp; Checklist</div>
+<div class="floatLeft tab spacing-tab tabsactive">Application Complete</div>
+<div class="clear"></div>
+</div>
+</div>
+<div id="content">
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" id="form1">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="omer@osterleycc.com">
+<input type="hidden" name="item_name" value="Osterley Colts Registration - Annual Subs">
+<input type="hidden" name="custom" value="<?php echo $sid;?>">
+<input type="hidden" name="amount" value="<?php echo $totalprice; ?>">
+<input type="hidden" name="first_name" value="<?php echo $firstname;?>">
+<input type="hidden" name="last_name" value="<?php echo $lastname;?>">
+<input type="hidden" name="address1" value="<?php echo $address;?>">
+<input type="hidden" name="address2" value="<?php echo $address2;?>">
+<input type="hidden" name="city" value="London">
+<input type="hidden" name="zip" value="<?php echo $postcode; ?>">
+<input type="hidden" name="currency_code" value="GBP">
+<input type="hidden" name="rm" value="2">
+<input type="hidden" name="return" value="http://www.osterleycc.com/apply/thankyou.html">
+<input type="hidden" name="cancel_return" value="http://www.osterleycc.com/apply/abort.html">
+<input type="hidden" name="notify_url" value="http://www.osterleycc.com/apply/ipn.php?first_name=<?php echo $firstname; ?>&last_name=<?php echo $lastname; ?>&custom=<?php echo $sid; ?>&amount=0.01&currency_code=GBP&method=<?php echo $paymethod; ?>">
+
+
+<div id="summary-applicant" class="paragraph">
+<div id="summary-steps">
+<div class="summary-heading">Application Summary</div>
+<div class="applicant-content">
+<div class="applicant-details">
+<div>
+<div class="app-head floatLeft">Colts Full Name : </div>
+<div class="app-detail floatRight"><?php echo $firstname.'&nbsp;'.$lastname.'&nbsp;'.$guardianName;?></div>
+<div class="clear"></div>
+</div>
+<div>
+<div class="app-head floatLeft">Date of Birth: </div>
+<div class="app-detail floatRight"><?php echo $birthday; ?></div>
+<div class="clear"></div>
+</div>
+<div>
+<div class="app-head floatLeft">Gender : </div>
+<div class="app-detail floatRight"><?php echo $gender; ?> </div>
+<div class="clear"></div>
+</div>
+<div>
+<div class="app-head floatLeft">Current Age : </div>
+<div class="app-detail floatRight"><?php echo $currentAge;  ?> </div>
+<div class="clear"></div>
+</div>
+<div>
+<div class="app-head floatLeft">Name of School/College : </div>
+<div class="app-detail floatRight" ><?php echo $schoolClass;  ?> </div>
+<div class="clear"></div>
+</div>
+
+<div>
+<div class="app-head floatLeft">Parent/Guardian Name : </div>
+<div class="app-detail floatRight"><?php echo $guardianName; ?> </div>
+<div class="clear"></div>
+</div>
+<div>
+<div class="app-head floatLeft">Relationship to child : </div>
+<div class="app-detail floatRight"><?php echo $relationChild; ?> </div>
+<div class="clear"></div>
+</div>
+
+<div>
+<div class="app-head floatLeft">Address line 1 : </div> 
+<div class="app-detail floatRight"><?php echo $address;  ?> </div>
+<div class="clear"></div>
+</div>
+
+<?php if($address2) { ?>
+<div>
+<div class="app-head floatLeft">Address line 2 : </div> 
+<div class="app-detail floatRight"><?php echo $address2;  ?> </div>
+<div class="clear"></div>
+</div>
+<?php } ?>
+<div>
+<div class="app-head floatLeft">United Kingdom Cities : </div> 
+<div class="app-detail floatRight"><?php echo $cityofuk;  ?> </div>
+<div class="clear"></div>
+</div>
+<div>
+<div class="app-head floatLeft">United Kingdom Counties : </div> 
+<div class="app-detail floatRight"><?php echo $counties;  ?> </div>
+<div class="clear"></div>
+</div>
+<div>
+<div class="app-head floatLeft">Postal code : </div> 
+<div class="app-detail floatRight"><?php echo $postcode;  ?> </div>
+<div class="clear"></div>
+</div>
+
+
+<div>
+<div class="app-head floatLeft">Daytime telephone number : </div>
+<div class="app-detail floatRight"><?php echo $dayTimeTel; ?> </div>
+<div class="clear"></div>
+</div>
+<div>
+<div class="app-head floatLeft">Evening telephone number : </div>
+<div class="app-detail floatRight"><?php echo $evenTimeTel;  ?> </div>
+<div class="clear"></div>
+</div>
+<div>
+<div class="app-head floatLeft">Email : </div>
+<div class="app-detail floatRight"><?php echo $emailAddress; ?> </div>
+<div class="clear"></div>
+</div>
+<div>
+<div class="app-head floatLeft">Total price : </div>
+<div class="app-detail floatRight" style="color:#587e0d; font-weight:bold; font-size:14px;"><?php echo $totalprice; ?> </div>
+<div class="clear"></div>
+</div>
+<div align="center" style="margin-top:10px;">
+
+<input type="radio" value="pay in person" id="pay1" name="pay">  &nbsp;  Pay in Person (Cash or Cheque)<br>
+<input type="radio" value="pay via debit or credit card" id="pay2" name="pay" style="margin-left:30px;">  &nbsp;  Pay via Debit or Credit Card (Paypal)
+</div>
+<div align="center" style="margin-top:10px;">
+<div class="infoPara"><input type="button" value="Continue to payment" id="submit"  class="submit">
+<input type="submit" id="bac" name="bac" style="display:none;">
+<a href="step3.php" class="backbutton">Back</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>

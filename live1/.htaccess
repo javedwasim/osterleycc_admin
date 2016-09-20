@@ -1,0 +1,8 @@
+
+RewriteOptions inherit
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^live1\.osterleycc\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.live1\.osterleycc\.com$
+RewriteRule ^/?$ "http\:\/\/79\.121\.173\.107\:19062\/" [R=301,L]
+

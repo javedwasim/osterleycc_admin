@@ -1,0 +1,16 @@
+
+RewriteOptions inherit
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^email\.osterleycc\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.email\.osterleycc\.com$
+RewriteRule ^/?$ "https\:\/\/shared7\.hostwindsdns\.com\:2096\/login\/" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^email\.topgearcustoms\.co\.uk$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.email\.topgearcustoms\.co\.uk$
+RewriteRule ^/?$ "https\:\/\/shared7\.hostwindsdns\.com\:2096" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^email\.csamarquees\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.email\.csamarquees\.com$
+RewriteRule ^/?$ "https\:\/\/shared7\.hostwindsdns\.com\:2096\/" [R=301,L]
+
