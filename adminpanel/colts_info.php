@@ -43,15 +43,17 @@ if(!empty($_REQUEST['sort_age'])&&!empty($_REQUEST['sort_season'])){
     $ageCriteria = $_REQUEST['sort_age'];
 
     if ($_REQUEST['sort_age'] == 11) {
-
+      $season_id = $_REQUEST['sort_season'];
       $query1 = "SELECT *, TIMESTAMPDIFF(YEAR, STR_TO_DATE(occ_birthday,'%d/%b/%Y'), '$sepDate') As age from `occ_registrant`  HAVING age <=11 and `source_type` = 1  and `season_id` = $season_id ";
 
     } else {
-
+        $season_id = $_REQUEST['sort_season'];
         $todayDate = date("Y-m-d");
         $query1 = "SELECT *, TIMESTAMPDIFF(YEAR, STR_TO_DATE(occ_birthday,'%d/%b/%Y'), '$todayDate') As age from `occ_registrant`  HAVING age <=$ageCriteria and `source_type` = 1 and `season_id` = $season_id ";
+
     }
 }
+//Only Age Filter
 elseif (isset($_REQUEST['sort_age']) && !empty($_REQUEST['sort_age'])) {
 
     //add months to go back to 1st Sep of previous year
@@ -72,24 +74,21 @@ elseif (isset($_REQUEST['sort_age']) && !empty($_REQUEST['sort_age'])) {
     }
 
 }
+//Only season filter
 elseif(isset($_REQUEST['sort_season']) && !empty($_REQUEST['sort_season'])){
 
     $season_id = $_REQUEST['sort_season'];
     $query1 = "SELECT * FROM `occ_registrant` WHERE `source_type` = 1 and `season_id` = $season_id";
 }
 else {
-
+    //Select all for season filters
     if(isset($_REQUEST['sort_season']) && empty($_REQUEST['sort_season'])){
 
         $query1 = "SELECT * FROM `occ_registrant` WHERE `source_type` = 1";
         $season_id = "";
 
-    }elseif(isset($_REQUEST['sort_age']) && empty($_REQUEST['sort_age'])){
-
-        $query1 = "SELECT * FROM `occ_registrant` WHERE `source_type` = 1";
-        $season_id = "";
-
-    }else{
+    }
+    else{
         $query1 = "SELECT * FROM `occ_registrant` WHERE `source_type` = 1 and `season_id` = $season_id ";
     }
 

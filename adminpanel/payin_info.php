@@ -57,6 +57,8 @@ if(isset($_REQUEST['sort_season']) && !empty($_REQUEST['sort_season'])){
         $query1 = "SELECT * FROM occ_registrant as r, payment_recieved as p WHERE r.sid = p.uid and p.status = 1 and p.source_type = $source_type and r.season_id = $season_id";
     }
 
+
+
 }
 
 $pagination1 = mysql_query($query1);
