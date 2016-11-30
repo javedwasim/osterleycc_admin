@@ -102,7 +102,7 @@ $sreault = mysql_query($squery);
             <div style="padding: 15px 0 10px 0;">
                 <div id="container" class="occ-filter">
                     <form name="sortingForm" id="sortingForm" action="adutls_info.php" method="post">
-                        <div id="sortby">
+                        <div id="sortby" style="margin: 20px 0 15px 0;">
                             <strong>Filter By Season:</strong>
                             <select name="sort_season" id="sort_season" onchange="this.form.submit()"
                                     class="form-control">
@@ -118,14 +118,14 @@ $sreault = mysql_query($squery);
                     </form>
                 </div>
                 <div class="panel-heading">
-                    <a href="#" class="shortcut-link payinfo-link" style="float: left;">
+                    <a href="#" class="shortcut-link payinfo-link" style="float: left; margin: 15px 0 15px 0;">
 					<span class="shortcut-icon">
 						<i class="fa fa-group"></i>
 					</span>
                         <span class="text payinfo">Adults Registrations</span>
                     </a>
 
-                    <a href="#" class="shortcut-link" style="float: right;">
+                    <a href="#" class="shortcut-link" style="float: right;margin: 15px 10px 15px 0;">
 					<span class="label label-info3 pull-right payinfo-record"
                           style="margin-top: 15px; font-weight: 100"><?php echo $total_records . " Records"; ?></span>
                     </a>

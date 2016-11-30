@@ -10,11 +10,11 @@ if ($_SESSION['sid']) {
     $track = mysql_insert_id();
     if ($insertQuery) {
         echo "success";
-        //header("Location:thankyou2.html");
-        //session_destroy();
-        //exit();
+       // header("Location:thankyou2.html");
+       // session_destroy();
+       // exit();
     }
 } else {
-    //header("Location:index.php");
+   // header("Location:index.php");
 }
 ?>

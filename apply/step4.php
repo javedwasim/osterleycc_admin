@@ -1,8 +1,15 @@
 <?php
 include("class/db_config.php");
 include("../adminpanel/DateMathClassA.php");
-//mail function
 
+//
+//$q=mysql_query("SELECT * FROM `occ_registrant` WHERE 1");
+//while($row=mysql_fetch_array($q)){
+//echo "<pre>";
+//print_r($row);
+//
+//}die();
+//mail function
 function readTemplateFile($FileName)
 {
     $fp = fopen($FileName, "r") or exit("Unable to open File " . $FileName);
@@ -135,36 +142,47 @@ if ($_SESSION['sid']) {
         $headers = "From: omer@osterleycc.com";
         $headers .= "\r\nContent-Type: text/html; charset=iso-8859-1";
         $body = str_replace("#fullname#", $NameofPerson, $body);
-        //$estatus = mail($emailAddress, " Registration Successful ", $body, $headers);
+        $estatus = mail($emailAddress, " Registration Successful ", $body, $headers);
 
-//	include("imail/PHPMailer-master/PHPMailerAutoload.php");
-//
-//	 $mail = new PHPMailer(true);
-//
-//	//Send mail using gmail
-//	$mail->IsSMTP(); // telling the class to use SMTP
-//	$mail->SMTPAuth = true; // enable SMTP authentication
-//	//$mail->SMTPSecure = "tls"; // sets the prefix to the servier
-//	$mail->Host = "shared7.hostwindsdns.com"; // sets GMAIL as the SMTP server
-//	$mail->Port = 465; // set the SMTP port for the GMAIL server
-//	$mail->Username = "info@osterleycc.com"; // GMAIL username
-//	$mail->Password = "InfO@Osdt23456"; // GMAIL password @@WELCOME@@777@@tds
-//	$mail->SMTPSecure = "ssl";
-//
-//
-//	//Typical mail data
-//	$mail->AddReplyTo('info@osterleycc.com',"Osterley Cricket Club");
-//	$mail->AddAddress($emailAddress);
-//	$mail->SetFrom('info@osterleycc.com', 'Osterley Cricket Club');
-//	$mail->Subject = "Registration Successful";
-//	//echo $_POST['subject'];
-//
-//	$mail->MsgHTML($body);
-//
-//	if(!$mail->send()) {
-//		//echo 'Message could not be sent.';
-//		echo 'Mailer Error: ' . $mail->ErrorInfo;
-//	}
+        include("imail/PHPMailer-master/PHPMailerAutoload.php");
+
+        try{
+
+            $mail = new PHPMailer(true);
+
+            //Send mail using gmail
+            $mail->IsSMTP(); // telling the class to use SMTP
+            $mail->SMTPAuth = true; // enable SMTP authentication
+            //$mail->SMTPSecure = "tls"; // sets the prefix to the servier
+            $mail->Host = "shared7.hostwindsdns.com"; // sets GMAIL as the SMTP server
+            $mail->Port = 465; // set the SMTP port for the GMAIL server
+            $mail->Username = "info@osterleycc.com"; // GMAIL username
+            $mail->Password = "InfO@Osdt23456"; // GMAIL password @@WELCOME@@777@@tds
+            $mail->SMTPSecure = "ssl";
+
+            //Typical mail data
+            $mail->AddReplyTo('info@osterleycc.com',"Osterley Cricket Club");
+            $mail->AddAddress($emailAddress);
+            $mail->SetFrom('info@osterleycc.com', 'Osterley Cricket Club');
+            $mail->Subject = "Registration Successful";
+            //echo $_POST['subject'];
+
+            $mail->MsgHTML($body);
+
+            if(!$mail->send()) {
+                //echo 'Message could not be sent.';
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            }
+
+        }catch (phpmailerException $e) {
+            echo $e->errorMessage(); //Pretty error messages from PHPMailer
+
+
+        }catch (Exception $e) {
+            echo $e->errorMessage(); //Pretty error messages from PHPMailer
+
+        }
+
         //Mail procedure of colts registration ends here
     } else {
         mysql_error() . '<hr>';
@@ -471,8 +489,8 @@ if ($_SESSION['sid']) {
                     cache: false,
                     success: function(data){
                         if(data=='success') {
-                            //window.location.assign("http://www.osterleycc.com/apply/thankyou2.html");
-                            alert("OK");
+                            window.location.assign("http://www.osterleycc.com/apply/thankyou2.html");
+                           
                         }
                     }
                 });

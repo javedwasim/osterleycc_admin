@@ -75,26 +75,26 @@ if ($_SESSION['sid']) {
 
     if ($childPlay != 2) {
         $played = "";
-        if(isset($_SESSION['played_cricket1'])){
+        if (isset($_SESSION['played_cricket1'])) {
             $played = $_SESSION['played_cricket1'];
         }
-        if(isset($_SESSION['played_cricket2'])){
-            $played  .= '|'.$_SESSION['played_cricket2'];
+        if (isset($_SESSION['played_cricket2'])) {
+            $played .= '|' . $_SESSION['played_cricket2'];
         }
-        if(isset($_SESSION['played_cricket3'])){
-            $played  .= '|'.$_SESSION['played_cricket3'];
+        if (isset($_SESSION['played_cricket3'])) {
+            $played .= '|' . $_SESSION['played_cricket3'];
         }
-        if(isset($_SESSION['played_cricket4'])){
-            $played  .= '|'.$_SESSION['played_cricket4'];
+        if (isset($_SESSION['played_cricket4'])) {
+            $played .= '|' . $_SESSION['played_cricket4'];
         }
-        if(isset($_SESSION['played_cricket5'])){
-            $played  .= '|'.$_SESSION['played_cricket5'];
+        if (isset($_SESSION['played_cricket5'])) {
+            $played .= '|' . $_SESSION['played_cricket5'];
         }
-        if(isset($_SESSION['played_cricket6'])){
-            $played  .= '|'.$_SESSION['played_cricket6'];
+        if (isset($_SESSION['played_cricket6'])) {
+            $played .= '|' . $_SESSION['played_cricket6'];
         }
 
-       //$played = $_SESSION['played_cricket1'] . '|' . $_SESSION['played_cricket2'] . '|' . $_SESSION['played_cricket3'] . '|' . $_SESSION['played_cricket4'] . '|' . $_SESSION['played_cricket5'] . '|' . $_SESSION['played_cricket6'];
+        //$played = $_SESSION['played_cricket1'] . '|' . $_SESSION['played_cricket2'] . '|' . $_SESSION['played_cricket3'] . '|' . $_SESSION['played_cricket4'] . '|' . $_SESSION['played_cricket5'] . '|' . $_SESSION['played_cricket6'];
     } else {
         $played = "";
     }
@@ -102,20 +102,20 @@ if ($_SESSION['sid']) {
 
     if ($careImpairment != 2) {
         $impairments = "";
-        if(isset($_SESSION['impairment1'])){
+        if (isset($_SESSION['impairment1'])) {
             $impairments = $_SESSION['impairment1'];
         }
-        if(isset($_SESSION['impairment2'])){
-            $impairments  .= '|'.$_SESSION['impairment2'];
+        if (isset($_SESSION['impairment2'])) {
+            $impairments .= '|' . $_SESSION['impairment2'];
         }
-        if(isset($_SESSION['impairment3'])){
-            $impairments  .= '|'.$_SESSION['impairment3'];
+        if (isset($_SESSION['impairment3'])) {
+            $impairments .= '|' . $_SESSION['impairment3'];
         }
-        if(isset($_SESSION['impairment4'])){
-            $impairments  .= '|'.$_SESSION['impairment4'];
+        if (isset($_SESSION['impairment4'])) {
+            $impairments .= '|' . $_SESSION['impairment4'];
         }
-        if(isset($_SESSION['impairment5'])){
-            $impairments  .= '|'.$_SESSION['impairment5'];
+        if (isset($_SESSION['impairment5'])) {
+            $impairments .= '|' . $_SESSION['impairment5'];
         }
 
         //$impairments = $_SESSION['impairment1'] . '|' . $_SESSION['impairment2'] . '|' . $_SESSION['impairment3'] . '|' . $_SESSION['impairment4'] . '|' . $_SESSION['impairment5'];
@@ -206,14 +206,13 @@ if ($_SESSION['sid']) {
     $currentyear = date('Y');
 
     //CASE 1 - For Registrations before 1st October
-    if ($currentmonth<10) {
+    if ($currentmonth < 10) {
 
         $isAfter30September = true;
         $season_id = $dt->RegistrantSeason($isAfter30September);
 
-    }
-    //CASE 2 - For Registrations after 30th septemebr
-    elseif($currentmonth>9){
+    } //CASE 2 - For Registrations after 30th septemebr
+    elseif ($currentmonth > 9) {
 
         $isAfter30September = false;
         $season_id = $dt->RegistrantSeason($isAfter30September);
@@ -223,7 +222,7 @@ if ($_SESSION['sid']) {
     //Colts information inserts
 
 
-     $query = "call occ_registrant('NULL','" . $firstname . "','" . $lastname . "','" . $birthday . "','NA','" . $gender . "','NA','NA','" . $jobTitle . "','NA','NA','" . $fulladdress . "','" . $cityofuk . "','" . $counties . "','" . $postcode . "','" . $dayTimeTel . "','" . $evenTimeTel . "','" . $emailAddress . "','" . $emergencyContactName . "','" . $emergencyContactLastName . "','" . $emergencyContactChild . "','" . $emergencyContactAddr . "','" . $emgcity . "','" . $emgcounty . "','" . $emgpost . "','" . $emergencyContactDayTel . "','" . $emergencyContactEvenTel . "','NA','" . $childPlay . "','" . $cricket_played . "','" . $otherSpc . "','" . $careImpairment . "','" . $impairment . "','" . $otherSpcf . "','" . $additional . "','" . $doctorName . "','" . $doctorTel . "','" . $consent . "','" . $cirlce . "','" . $date . "','" . $codesofconduct . "','" . $terms . "','" . $totalprice . "','" . $sid . "','" . $dateRegistration . "','" . $source_type . "','" . $status . "','" . $country . "','" . $migratedday . "','" . $occ_city . "','" . $season_id . "')";
+    $query = "call occ_registrant('NULL','" . $firstname . "','" . $lastname . "','" . $birthday . "','NA','" . $gender . "','NA','NA','" . $jobTitle . "','NA','NA','" . $fulladdress . "','" . $cityofuk . "','" . $counties . "','" . $postcode . "','" . $dayTimeTel . "','" . $evenTimeTel . "','" . $emailAddress . "','" . $emergencyContactName . "','" . $emergencyContactLastName . "','" . $emergencyContactChild . "','" . $emergencyContactAddr . "','" . $emgcity . "','" . $emgcounty . "','" . $emgpost . "','" . $emergencyContactDayTel . "','" . $emergencyContactEvenTel . "','NA','" . $childPlay . "','" . $cricket_played . "','" . $otherSpc . "','" . $careImpairment . "','" . $impairment . "','" . $otherSpcf . "','" . $additional . "','" . $doctorName . "','" . $doctorTel . "','" . $consent . "','" . $cirlce . "','" . $date . "','" . $codesofconduct . "','" . $terms . "','" . $totalprice . "','" . $sid . "','" . $dateRegistration . "','" . $source_type . "','" . $status . "','" . $country . "','" . $migratedday . "','" . $occ_city . "','" . $season_id . "')";
 
 
     if (mysql_query($query)) {
@@ -240,36 +239,46 @@ if ($_SESSION['sid']) {
         $headers = "From: omer@osterleycc.com";
         $headers .= "\r\nContent-Type: text/html; charset=iso-8859-1";
         $body = str_replace("#fullname#", $NameofPerson, $body);
-//	$estatus = mail($emailAddress, " Registration Successful ", $body, $headers);
+        $estatus = mail($emailAddress, " Registration Successful ", $body, $headers);
 
-//	include("imail/PHPMailer-master/PHPMailerAutoload.php");
-//
-//	 $mail = new PHPMailer(true);
-//
-//	//Send mail using gmail
-//	$mail->IsSMTP(); // telling the class to use SMTP
-//	$mail->SMTPAuth = true; // enable SMTP authentication
-//	//$mail->SMTPSecure = "tls"; // sets the prefix to the servier
-//	$mail->Host = "shared7.hostwindsdns.com"; // sets GMAIL as the SMTP server
-//	$mail->Port = 465; // set the SMTP port for the GMAIL server
-//	$mail->Username = "info@osterleycc.com"; // GMAIL username
-//	$mail->Password = "InfO@Osdt23456"; // GMAIL password @@WELCOME@@777@@tds
-//	$mail->SMTPSecure = "ssl";
-//
-//
-//	//Typical mail data
-//	$mail->AddReplyTo('info@osterleycc.com',"Osterley Cricket Club");
-//	$mail->AddAddress($emailAddress);
-//	$mail->SetFrom('info@osterleycc.com', 'Osterley Cricket Club');
-//	$mail->Subject = "Registration Successful";
-//	//echo $_POST['subject'];
-//
-//	$mail->MsgHTML($body);
-//
-//	if(!$mail->send()) {
-//		//echo 'Message could not be sent.';
-//		echo 'Mailer Error: ' . $mail->ErrorInfo;
-//	}
+        include("imail/PHPMailer-master/PHPMailerAutoload.php");
+        try {
+            $mail = new PHPMailer(true);
+
+            //Send mail using gmail
+            $mail->IsSMTP(); // telling the class to use SMTP
+            $mail->SMTPAuth = true; // enable SMTP authentication
+            //$mail->SMTPSecure = "tls"; // sets the prefix to the servier
+            $mail->Host = "shared7.hostwindsdns.com"; // sets GMAIL as the SMTP server
+            $mail->Port = 465; // set the SMTP port for the GMAIL server
+            $mail->Username = "info@osterleycc.com"; // GMAIL username
+            $mail->Password = "InfO@Osdt23456"; // GMAIL password @@WELCOME@@777@@tds
+            $mail->SMTPSecure = "ssl";
+
+
+            //Typical mail data
+            $mail->AddReplyTo('info@osterleycc.com', "Osterley Cricket Club");
+            $mail->AddAddress($emailAddress);
+            $mail->SetFrom('info@osterleycc.com', 'Osterley Cricket Club');
+            $mail->Subject = "Registration Successful";
+            //echo $_POST['subject'];
+
+            $mail->MsgHTML($body);
+
+            if (!$mail->send()) {
+                //echo 'Message could not be sent.';
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            }
+
+        } catch (phpmailerException $e) {
+            //echo $e->errorMessage(); //Pretty error messages from PHPMailer
+
+
+        } catch (Exception $e) {
+           // echo $e->errorMessage(); //Pretty error messages from PHPMailer
+
+        }
+
 
     } else {
 
@@ -351,7 +360,6 @@ function readTemplateFile($FileName)
     <script type="text/javascript" src="js/jquery-latest.js"></script>
 
     <script type="text/javascript" src="js/gen_validatorv4.js"></script>
-
 
 
 </head>
@@ -504,15 +512,32 @@ function readTemplateFile($FileName)
                                     </tr>
 
                                     <tr>
-                                        <td style = "text-align:right;">
+                                        <td style="text-align:right;">
                                             <img src="images/paypa.png" width="73" height="44">
                                         </td>
                                         <td>
                                             <label class="label-radio">
-                                                <input type="radio" value="pay via debit or credit card" id="pay2" name="pay" disabled>
+                                                <input type="radio" value="pay via debit or credit card" id="pay2"
+                                                       name="pay" disabled>
                                                 <span class="custom-radio"></span>
                                                 Pay via Debit or Credit Card (Paypal)
                                             </label>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="text-align:right;">
+                                            <img src="images/bank.png" width="73" height="44">
+                                        </td>
+                                        <td>
+                                            <label class="label-radio">
+                                                <input type="radio" value="6" id="pay3"
+                                                       name="pay" class="radioBtnClass">
+                                                <span class="custom-radio"></span>
+                                                Pay via Bank Transfer
+                                                <a style="color: blue;" target="_blank" href="download.php">Download Bank Detail</a>
+                                            </label>
+
                                         </td>
                                     </tr>
 
@@ -592,7 +617,7 @@ function readTemplateFile($FileName)
                 $.ajax({
                     url: "addcashpayment.php?uid=<?php echo $sid; ?>&totalprice=<?php echo $totalprice; ?>",
                     cache: false,
-                    success: function(data){
+                    success: function (data) {
                         window.location.assign("http://www.osterleycc.com/apply2/thankyou2.html");
                     }
                 });

@@ -42,16 +42,16 @@ if ($_SESSION['sid']) {
     $emergencyContactChild = $_SESSION['rel_child_emg'];
     $emergencyContactAddr = $_SESSION['addr_emg'];
     $emergencyContactDayTel = $_SESSION['dtimetel_emg'];
-    $emergencyContactEvenTel = isset($_SESSION['etimetel_emg'])? $_SESSION['etimetel_emg']:'';
-    $emergencyemail = isset($_SESSION['email_emg'])? $_SESSION['email_emg']:'';
+    $emergencyContactEvenTel = isset($_SESSION['etimetel_emg']) ? $_SESSION['etimetel_emg'] : '';
+    $emergencyemail = isset($_SESSION['email_emg']) ? $_SESSION['email_emg'] : '';
     $sid = $_SESSION['sid'];
-    $childPlay = isset($_SESSION['chld_ply'])? $_SESSION['chld_ply']:'';
+    $childPlay = isset($_SESSION['chld_ply']) ? $_SESSION['chld_ply'] : '';
     $played = '';//$_SESSION['played_cricket1'] . '|' . $_SESSION['played_cricket2'] . '|' . $_SESSION['played_cricket3'] . '|' . $_SESSION['played_cricket4'] . '|' . $_SESSION['played_cricket5'] . '|' . $_SESSION['played_cricket6'];
-    $careImpairment = isset($_SESSION['care_impairment'])? $_SESSION['care_impairment']:'';
+    $careImpairment = isset($_SESSION['care_impairment']) ? $_SESSION['care_impairment'] : '';
     $impairments = '';//$_SESSION['impairment1'] . '|' . $_SESSION['impairment2'] . '|' . $_SESSION['impairment3'] . '|' . $_SESSION['impairment4'] . '|' . $_SESSION['impairment5'];
-    $mobTel = isset($_SESSION['mtel'])? $_SESSION['mtel']:'';
-    $otherSpcf = isset($_SESSION['other_spcf'])? $_SESSION['other_spcf']:'';
-    $otherSpc = isset($_SESSION['other_spc'])? $_SESSION['other_spc']:'';
+    $mobTel = isset($_SESSION['mtel']) ? $_SESSION['mtel'] : '';
+    $otherSpcf = isset($_SESSION['other_spcf']) ? $_SESSION['other_spcf'] : '';
+    $otherSpc = isset($_SESSION['other_spc']) ? $_SESSION['other_spc'] : '';
     $additional = $_SESSION['additional_info'];
     $doctorName = $_SESSION['name_dr'];
     $doctorTel = $_SESSION['tel_dr'];
@@ -60,7 +60,7 @@ if ($_SESSION['sid']) {
     $source_type = $_SESSION['source_type'];
 
     $cirlce = $_SESSION['appropriate_ans1'] . '|' . $_SESSION['appropriate_ans2'] . '|' . $_SESSION['appropriate_ans3'] . '|' . $_SESSION['appropriate_ans4'] . '|' . $_SESSION['appropriate_ans5'];
-    $club = isset($_SESSION['club_constitution'])? $_SESSION['club_constitution']:'';
+    $club = isset($_SESSION['club_constitution']) ? $_SESSION['club_constitution'] : '';
     $code = $_SESSION['code_of_conduct'];
     $terms = $_SESSION['cck_bx'];
 
@@ -98,14 +98,13 @@ if ($_SESSION['sid']) {
     $currentyear = date('Y');
 
     //CASE 1 - For Registrations before 1st October
-    if ($currentmonth<10) {
+    if ($currentmonth < 10) {
 
         $isAfter30September = true;
         $season_id = $dt->RegistrantSeason($isAfter30September);
 
-    }
-    //CASE 2 - For Registrations after 30th septemebr
-    elseif($currentmonth>9){
+    } //CASE 2 - For Registrations after 30th septemebr
+    elseif ($currentmonth > 9) {
 
         $isAfter30September = false;
         $season_id = $dt->RegistrantSeason($isAfter30September);
@@ -131,40 +130,45 @@ if ($_SESSION['sid']) {
         $headers = "From: omer@osterleycc.com";
         $headers .= "\r\nContent-Type: text/html; charset=iso-8859-1";
         $body = str_replace("#fullname#", $NameofPerson, $body);
-//	$estatus = mail($emailAddress, " Registration Successful ", $body, $headers);
+        //	$estatus = mail($emailAddress, " Registration Successful ", $body, $headers);
 
-//	include("imail/PHPMailer-master/PHPMailerAutoload.php");
-//
-//	 $mail = new PHPMailer(true);
-//
-//	//Send mail using gmail
-//	$mail->IsSMTP(); // telling the class to use SMTP
-//	$mail->SMTPAuth = true; // enable SMTP authentication
-//	//$mail->SMTPSecure = "tls"; // sets the prefix to the servier
-//	$mail->Host = "shared7.hostwindsdns.com"; // sets GMAIL as the SMTP server
-//	$mail->Port = 465; // set the SMTP port for the GMAIL server
-//	$mail->Username = "info@osterleycc.com"; // GMAIL username
-//	$mail->Password = "InfO@Osdt23456"; // GMAIL password @@WELCOME@@777@@tds
-//	$mail->SMTPSecure = "ssl";
-//
-//
-//	//Typical mail data
-//	$mail->AddReplyTo('info@osterleycc.com',"Osterley Cricket Club");
-//	$mail->AddAddress($emailAddress);
-//	$mail->SetFrom('info@osterleycc.com', 'Osterley Cricket Club');
-//	$mail->Subject = "Registration Successful";
-//	//echo $_POST['subject'];
-//
-//	$mail->MsgHTML($body);
-//
-//	if(!$mail->send()) {
-//		//echo 'Message could not be sent.';
-//		echo 'Mailer Error: ' . $mail->ErrorInfo;
-//	}
-//
+        include("imail/PHPMailer-master/PHPMailerAutoload.php");
+        try {
+            $mail = new PHPMailer(true);
 
+            //Send mail using gmail
+            $mail->IsSMTP(); // telling the class to use SMTP
+            $mail->SMTPAuth = true; // enable SMTP authentication
+            //$mail->SMTPSecure = "tls"; // sets the prefix to the servier
+            $mail->Host = "shared7.hostwindsdns.com"; // sets GMAIL as the SMTP server
+            $mail->Port = 465; // set the SMTP port for the GMAIL server
+            $mail->Username = "info@osterleycc.com"; // GMAIL username
+            $mail->Password = "InfO@Osdt23456"; // GMAIL password @@WELCOME@@777@@tds
+            $mail->SMTPSecure = "ssl";
+
+
+            //Typical mail data
+            $mail->AddReplyTo('info@osterleycc.com', "Osterley Cricket Club");
+            $mail->AddAddress($emailAddress);
+            $mail->SetFrom('info@osterleycc.com', 'Osterley Cricket Club');
+            $mail->Subject = "Registration Successful";
+            //echo $_POST['subject'];
+
+            $mail->MsgHTML($body);
+
+            if (!$mail->send()) {
+                //echo 'Message could not be sent.';
+                //echo 'Mailer Error: ' . $mail->ErrorInfo;
+            }
+        } catch (phpmailerException $e) {
+            //echo $e->errorMessage(); //Pretty error messages from PHPMailer
+
+
+        } catch (Exception $e) {
+            echo $e->errorMessage(); //Pretty error messages from PHPMailer
+
+        }
         //Mail procedure of colts registration ends here
-
 
     } else {
         mysql_error() . '<hr>';
@@ -334,15 +338,32 @@ if ($_SESSION['sid']) {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style = "text-align:right;">
+                                        <td style="text-align:right;">
                                             <img src="images/paypa.png" width="73" height="44">
                                         </td>
                                         <td>
                                             <label class="label-radio">
-                                                <input type="radio" value="pay via debit or credit card" id="pay2" name="pay" disabled>
+                                                <input type="radio" value="pay via debit or credit card" id="pay2"
+                                                       name="pay" disabled>
                                                 <span class="custom-radio"></span>
                                                 Pay via Debit or Credit Card (Paypal)
                                             </label>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="text-align:right;">
+                                            <img src="images/bank.png" width="73" height="44">
+                                        </td>
+                                        <td>
+                                            <label class="label-radio">
+                                                <input type="radio" value="6" id="pay3"
+                                                       name="pay" class="radioBtnClass">
+                                                <span class="custom-radio"></span>
+                                                Pay via Bank Transfer
+                                                <a style="color: blue;" target="_blank" href="download.php">Download Bank Detail</a>
+                                            </label>
+
                                         </td>
                                     </tr>
 
@@ -416,7 +437,7 @@ if ($_SESSION['sid']) {
                     url: "payinperson.php",
                     cache: false,
                     success: function (data) {
-                        if(data=='success') {
+                        if (data == 'success') {
                             window.location.assign("http://www.osterleycc.com/apply3/thankyou2.html");
                         }
                     }
